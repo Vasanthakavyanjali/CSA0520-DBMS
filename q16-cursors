@@ -1,0 +1,323 @@
+
+mysql> create database stick;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use stick;
+Database changed
+mysql> create table ads(name varchar(30),id int(30),salary int(20));
+Query OK, 0 rows affected, 2 warnings (0.04 sec)
+
+mysql> desc ads;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(30) | YES  |     | NULL    |       |
+| id     | int         | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table ads add barnch varchar(39);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc ads;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(30) | YES  |     | NULL    |       |
+| id     | int         | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| barnch | varchar(39) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> rename table ads to dsa;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc dsa;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(30) | YES  |     | NULL    |       |
+| id     | int         | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| barnch | varchar(39) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table dsa rename column branch to city;
+ERROR 1054 (42S22): Unknown column 'branch' in 'dsa'
+mysql> alter table dsa rename column barnch to city;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc dsa;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(30) | YES  |     | NULL    |       |
+| id     | int         | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| city   | varchar(39) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table dsa drop column city;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc dsa;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(30) | YES  |     | NULL    |       |
+| id     | int         | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql>  insert into dsa values('renu',12,573),('reddy',45,647),('joy',75,5736),('ram',59,6476);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select*from dsa;
++-------+------+--------+
+| name  | id   | salary |
++-------+------+--------+
+| renu  |   12 |    573 |
+| reddy |   45 |    647 |
+| joy   |   75 |   5736 |
+| ram   |   59 |   6476 |
++-------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> update dsa set id=65 where name=renu;
+ERROR 1054 (42S22): Unknown column 'renu' in 'where clause'
+mysql> update dsa set id=65 where name='renu';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from dsa;
++-------+------+--------+
+| name  | id   | salary |
++-------+------+--------+
+| renu  |   65 |    573 |
+| reddy |   45 |    647 |
+| joy   |   75 |   5736 |
+| ram   |   59 |   6476 |
++-------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> roolback;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'roolback' at line 1
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from dsa;
++-------+------+--------+
+| name  | id   | salary |
++-------+------+--------+
+| renu  |   65 |    573 |
+| reddy |   45 |    647 |
+| joy   |   75 |   5736 |
+| ram   |   59 |   6476 |
++-------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select name,id from dsa;
++-------+------+
+| name  | id   |
++-------+------+
+| renu  |   65 |
+| reddy |   45 |
+| joy   |   75 |
+| ram   |   59 |
++-------+------+
+4 rows in set (0.00 sec)
+
+mysql> truncate table dsa;
+Query OK, 0 rows affected (1.67 sec)
+
+mysql> select*from dsa;
+Empty set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_stick |
++-----------------+
+| dsa             |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> drop table dsa;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table reg(name varchar(20),id int(2
+    ->  create table reg(name varchar(30),id int(30),salary int(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'create table reg(name varchar(30),id int(30),salary int(20))' at line 2
+mysql>  create table reg(name varchar(20),id int(20),salary int(10));
+Query OK, 0 rows affected, 2 warnings (0.04 sec)
+
+mysql> insert into dsa values('renu',12,573),('reddy',45,647),('joy',75,5736),('ram',59,6476);
+ERROR 1146 (42S02): Table 'stick.dsa' doesn't exist
+mysql> insert into reg values('renu',12,573),('reddy',45,647),('joy',75,5736),('ram',59,6476);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> selct*from reg;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct*from reg' at line 1
+mysql> select*from reg;
++-------+------+--------+
+| name  | id   | salary |
++-------+------+--------+
+| renu  |   12 |    573 |
+| reddy |   45 |    647 |
+| joy   |   75 |   5736 |
+| ram   |   59 |   6476 |
++-------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select*from reg where id>=50
+    -> select*from reg where id>=50;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select*from reg where id>=50' at line 2
+mysql> select*from reg where id>=50;
++------+------+--------+
+| name | id   | salary |
++------+------+--------+
+| joy  |   75 |   5736 |
+| ram  |   59 |   6476 |
++------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select*from reg where id between 40 and 78;
++-------+------+--------+
+| name  | id   | salary |
++-------+------+--------+
+| reddy |   45 |    647 |
+| joy   |   75 |   5736 |
+| ram   |   59 |   6476 |
++-------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select id,salary,salary*0.5 from reg;
++------+--------+------------+
+| id   | salary | salary*0.5 |
++------+--------+------------+
+|   12 |    573 |      286.5 |
+|   45 |    647 |      323.5 |
+|   75 |   5736 |     2868.0 |
+|   59 |   6476 |     3238.0 |
++------+--------+------------+
+4 rows in set (0.01 sec)
+
+mysql> select id,salary,salary+1000 as new salary from reg;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'salary from reg' at line 1
+mysql> select id,salary,salary+1000 as newsalary from reg;
++------+--------+-----------+
+| id   | salary | newsalary |
++------+--------+-----------+
+|   12 |    573 |      1573 |
+|   45 |    647 |      1647 |
+|   75 |   5736 |      6736 |
+|   59 |   6476 |      7476 |
++------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select*from reg where name like'%r';
+Empty set (0.00 sec)
+
+mysql>  select*from reg where name like'%y';
++-------+------+--------+
+| name  | id   | salary |
++-------+------+--------+
+| reddy |   45 |    647 |
+| joy   |   75 |   5736 |
++-------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql>  select*from reg where name like'%r';
+Empty set (0.00 sec)
+
+mysql>  select*from reg where name like'r%';
++-------+------+--------+
+| name  | id   | salary |
++-------+------+--------+
+| renu  |   12 |    573 |
+| reddy |   45 |    647 |
+| ram   |   59 |   6476 |
++-------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select count(name) from reg;
++-------------+
+| count(name) |
++-------------+
+|           4 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select min(id),max(id) from reg;
++---------+---------+
+| min(id) | max(id) |
++---------+---------+
+|      12 |      75 |
++---------+---------+
+1 row in set (0.02 sec)
+
+mysql> select avg(id),sum(id) from reg;
++---------+---------+
+| avg(id) | sum(id) |
++---------+---------+
+| 47.7500 |     191 |
++---------+---------+
+1 row in set (0.00 sec)
+
+mysql> select id from reg group by d;
+ERROR 1054 (42S22): Unknown column 'd' in 'group statement'
+mysql> select id from reg group by id;
++------+
+| id   |
++------+
+|   12 |
+|   45 |
+|   75 |
+|   59 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select id from reg group by id order by id desc;
++------+
+| id   |
++------+
+|   75 |
+|   59 |
+|   45 |
+|   12 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select id from reg group by id order by id;
++------+
+| id   |
++------+
+|   12 |
+|   45 |
+|   59 |
+|   75 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select id from reg group by id having id>=50;
++------+
+| id   |
++------+
+|   75 |
+|   59 |
++------+
+2 rows in set (0.00 sec)
+
+mysql>
